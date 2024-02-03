@@ -1,0 +1,10 @@
+@@ -2968,6 +2968,9 @@
+     if-nez v2, :cond_0
+ 
+     .line 753
++    invoke-static {v0, v1, p1}, Lcom/tscsoft/naroureader/utils/Modding;->patchNovelHtml(Ljava/lang/String;Lcom/tscsoft/naroureader/http/HttpGet;Lcom/tscsoft/naroureader/beans/ListBean;)Ljava/lang/String;
++    move-result-object v0
++
+     new-instance v2, Lcom/tscsoft/naroureader/NovelHtmlObject;
+ 
+     invoke-virtual {v1}, Lcom/tscsoft/naroureader/http/HttpGet;->getActualUrl()Ljava/net/URL;
