@@ -71,7 +71,7 @@ sudo apt install openjdk-18-jdk-headless apksigner zipalign apktool
      - この場合 `adb install-multiple` でインストール可能だが全てのapkに同一の署名が必要
 2. なろうリーダのapkを`original.apk`という名前で`run.sh`と同じディレクトリに配置
 3. 後述のコマンドでキーストアを作成
-4. `run.sh` または `run.bat` を実行
+4. `run.sh` を実行
     - apktoolによるデコード、パッチの適用、ビルド、zipalign、署名を行う
 5. `narou-mod.apk` が生成されるので、これを端末にインストール
     - 自己署名のため、インストール時にセキュリティ警告が表示される
