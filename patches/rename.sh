@@ -11,5 +11,5 @@ sed -i -e s/なろうリーダ/なろうリーダ[MOD]/ res/values/strings.xml
 mv smali_classes2/com/tscsoft/naroureader smali_classes2/com/tscsoft/naroureader_mod
 
 # change icon
-find . -type f -name ic_launcher.png -exec mogrify -modulate 100,90,170 {} +
-sed -i -e '/name="ic_launcher_background"/s/ffe97a06/ff11db8d/' res/values/colors.xml
+find . -type f -name ic_launcher.png -exec mogrify -modulate 100,50,170 {} +
+sed -i -e '/name="ic_launcher_background"/s/ffe97a06/ff3eae83/' res/values/colors.xml
