@@ -1,3 +1,6 @@
+diff -urN tmp/dec/smali_classes2/com/tscsoft/naroureader/utils/UpdateManager.smali tmp/mod/smali_classes2/com/tscsoft/naroureader/utils/UpdateManager.smali
+--- tmp/dec/smali_classes2/com/tscsoft/naroureader/utils/UpdateManager.smali	2024-02-15 01:19:41.998479626 +0900
++++ tmp/mod/smali_classes2/com/tscsoft/naroureader/utils/UpdateManager.smali	2024-02-15 01:21:05.152297030 +0900
 @@ -2968,6 +2968,9 @@
      if-nez v2, :cond_0
  

@@ -3,15 +3,21 @@
 rm -rf tmp
 mkdir tmp
 
-apktool decode -f -o tmp/original original.apk
+apktool decode -f -o tmp/dec original.apk
 
-rm -rf tmp/original/smali_classes2/okhttp3 \
-        tmp/original/smali_classes2/org/jsoup
-cp -r patch/smali/* tmp/original/smali_classes2/
+# overwite smali files
+rm -rf tmp/dec/smali_classes2/okhttp3 \
+        tmp/dec/smali_classes2/org/jsoup
+cp -r patches/smali/* tmp/dec/smali_classes2/
 
-patch tmp/original/smali_classes2/com/tscsoft/naroureader/utils/UpdateManager.smali < patch/UpdateManager.smali.diff
+# apply patches
+patch -u -p0 < patches/fix-update-100.diff
+patch -u -p0 < patches/version.diff
 
-apktool build -f -o tmp/mod-unaligned.apk tmp/original
+# change package name to com.tscsoft.naroureader_mod_mod_mod
+DIR=tmp/dec bash patches/rename.sh
+
+apktool build -f -o tmp/mod-unaligned.apk tmp/dec
 
 zipalign -f -v 4 tmp/mod-unaligned.apk tmp/mod-unsigned.apk
 

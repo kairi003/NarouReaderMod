@@ -1,0 +1,12 @@
+diff -urN tmp/dec/apktool.yml tmp/mod/apktool.yml
+--- tmp/dec/apktool.yml	2024-02-15 01:38:16.181481809 +0900
++++ tmp/mod/apktool.yml	2024-02-15 01:43:08.263078002 +0900
+@@ -13,7 +13,7 @@
+   renameManifestPackage: null
+ versionInfo:
+   versionCode: 180
+-  versionName: 1.35.6
++  versionName: 1.35.6+0.1.1
+ resourcesAreCompressed: false
+ sharedLibrary: false
+ sparseResources: false

@@ -1,2 +1,5 @@
 /tmp/
 /.keystore
+*.apk
+*.apk.idsig
+*.bsdiff

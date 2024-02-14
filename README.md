@@ -1,15 +1,24 @@
 # NarouReaderMod
 なろうリーダで100話以降の目次を取得するための改造パッチ
 
+パッチsmaliのソースプロジェクトは[こちら](https://github.com/kairi003/NarouReaderMod-source)
+
 # 注意
 - 本パッチは非公式のものであり、なろうリーダの開発者とは無関係です。不具合があっても本家開発者に問い合わせないでください。
 - 本パッチを利用することでアプリが正常に動作しなくなる可能性があります。自己責任でご利用ください。
 - 100話ごとで目次を取得するため、話数の多い小説の更新確認は遅くなります。
     - 一定以上更新に時間がかかる場合は目次の取得が中断されることがあります。その場合は登録小説を更新除外設定するなどで対処してください。
-- 本パッチを適用したなろうリーダはGoogle Playにてアップデートされなくなります。
-    - アップデートを行う場合はアプリをアンインストールし、公式のものを再インストールしてください。
-- パッチのソースはsrcディレクトリのAndroid Studioプロジェクトです。
-    - apkをビルドしてapktoolでデコードしたものからパッチをを作成しています。
+- ~~ 本パッチを適用したなろうリーダはGoogle Playにてアップデートされなくなります。~~
+    - ~~ アップデートを行う場合はアプリをアンインストールし、公式のものを再インストールしてください。~~
+- **ver0.1.1 以降** ではオリジナルとは別のアプリとしてインストールされます。
+    - オリジナルとはフルバックアップ/フルリストアによってデータを共有できます。
+- APKPureは非公式のapk配布サイトですが、署名が正規のものであれば一般的には安全です。
+    - あくまで自己責任なので不安な場合は複数apkを抽出しソースパッチしてください。
+### なろうリーダの署名フィンガープリント
+```
+SHA1: AD:45:B8:7B:B2:49:E6:EE:51:87:37:CD:23:BC:82:5F:8F:BC:C9:1B
+SHA256: FD:F3:16:B3:60:09:7A:63:C9:5E:7A:13:A9:36:B0:38:9E:47:5D:07:27:23:3A:F4:5D:93:90:59:31:49:B0:15
+```
 
 
 # バイナリパッチ
@@ -33,21 +42,26 @@
 ```bash
 bspatch original.apk narou-mod.apk narou-mod.bsdiff
 ```
+3. 署名のフィンガープリントはリリースページに記載されています。改竄されていないことを確認してください。
+```bash
+keytool -printcert -jarfile narou-mod.apk
+```
 
 # ソースパッチ
 ## パッチ適用動作環境
-- Linux推奨
-- Windowsでも動作するがWSL推奨
-- Macは未検証
+- Linux(WSL含む)推奨, Mac未検証
 
 ## 必要なツール
-Ubuntuの場合、全てaptでインストール可能
 - JDK : https://adoptopenjdk.net/
-- apktool : https://ibotpeaches.github.io/Apktool/
-- patch : Windowsの場合Git for Windows等に含まれる
 - keytool : JDKに含まれる
 - apksigner : Android SDKに含まれる
 - zipalign : Android SDKに含まれる
+- apktool : https://ibotpeaches.github.io/Apktool/
+### Ubuntuでのインストール例
+```bash
+sudo apt update
+sudo apt install openjdk-18-jdk-headless apksigner zipalign apktool
+```
 
 ## 使い方
 署名やビルドが面倒な場合はバイナリパッチを利用してください。
@@ -71,10 +85,10 @@ keytool -genkeypair -v -keystore .keystore -alias narou-mod -keyalg RSA -keysize
 ```
 
 # パッチによる変更内容
-### com.tscsoft.naroureader.utils.Modding.smali
+### com.tscsoft.naroureader_mod_mod.utils.Modding.smali
 - 目次ページを全て読み込むための関数 `patchNovelHtml` を追加
 
-### com.tscsoft.naroureader.utils.UpdateManager.smali.diff
+### com.tscsoft.naroureader_mod_mod.utils.UpdateManager.smali.diff
 - `patchNovelHtml` を呼び出すように変更
 
 ### org.jsoup
