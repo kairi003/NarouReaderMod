@@ -1,0 +1,46 @@
+diff -urN tmp/dec/smali_classes2/com/tscsoft/naroureader/activities/ViewerActivity$4.smali tmp/mod/smali_classes2/com/tscsoft/naroureader/activities/ViewerActivity$4.smali
+--- tmp/dec/smali_classes2/com/tscsoft/naroureader/activities/ViewerActivity$4.smali	2024-02-04 03:31:26.202320988 +0900
++++ tmp/mod/smali_classes2/com/tscsoft/naroureader/activities/ViewerActivity$4.smali	2024-02-04 03:26:47.112367925 +0900
+@@ -213,7 +213,25 @@
+ 
+     invoke-virtual {p1}, Lcom/tscsoft/naroureader/presenters/ViewerActivityPresenter;->onActionShowViewerPreference()V
+ 
++    goto :goto_0
++
+     :cond_9
++    # R.string.action_viewer_settings
++    const p2, 0x7f1203d2
++
++    if-ne p1, p2, :cond_10
++
++    iget-object p1, p0, Lcom/tscsoft/naroureader/activities/ViewerActivity$4;->this$0:Lcom/tscsoft/naroureader/activities/ViewerActivity;
++
++    invoke-static {p1}, Lcom/tscsoft/naroureader/activities/ViewerActivity;->access$100(Lcom/tscsoft/naroureader/activities/ViewerActivity;)Lcom/tscsoft/naroureader/presenters/ViewerActivityPresenter;
++    
++    move-result-object p1
++
++    invoke-static {p1}, Lcom/tscsoft/naroureader/utils/Modding;->switchViewerMode(Lcom/tscsoft/naroureader/presenters/ViewerActivityPresenter;)V
++
++    goto :goto_0
++
++    :cond_10
+     :goto_0
+     return-void
+ .end method
+diff -urN tmp/dec/smali_classes2/com/tscsoft/naroureader/activities/ViewerActivity.smali tmp/mod/smali_classes2/com/tscsoft/naroureader/activities/ViewerActivity.smali
+--- tmp/dec/smali_classes2/com/tscsoft/naroureader/activities/ViewerActivity.smali	2024-02-04 03:31:26.212320988 +0900
++++ tmp/mod/smali_classes2/com/tscsoft/naroureader/activities/ViewerActivity.smali	2024-02-04 03:30:06.312332515 +0900
+@@ -686,6 +686,13 @@
+     .line 439
+     invoke-virtual {p1, p2, p3}, Lcom/tscsoft/naroureader/customviews/FloatingSubmenuManager$Menu;->addItem(II)V
+ 
++
++    # R.string.action_viewer_settings
++    const p2, 0x7f1203d2
++    const p3, 0x7f0800ef
++    invoke-virtual {p1, p2, p3}, Lcom/tscsoft/naroureader/customviews/FloatingSubmenuManager$Menu;->addItem(II)V
++
++
+     const p2, 0x7f12004a
+ 
+     const p3, 0x7f0800e0
