@@ -34,7 +34,7 @@ diff -urwN -U5 tmp/dec/res/values/strings.xml tmp/mod/res/values/strings.xml
      <string name="writer_pager_tab_name_favorite">お気に入り</string>
      <string name="writer_pager_tab_name_imported">インポート済み</string>
 +    <string name="pref_general_min_index_update">【実験的】低負荷更新</string>
-+    <string name="pref_general_min_index_update_summary">目次更新時のページアクセスを最小限に抑えるます</string>
++    <string name="pref_general_min_index_update_summary">目次更新時のページアクセスを最小限に抑えます</string>
 +    <string name="pref_key_general_min_index_update">min_index_update</string>
  </resources>
 diff -urwN -U5 tmp/dec/res/xml/general_pref_basic.xml tmp/mod/res/xml/general_pref_basic.xml
