@@ -4,9 +4,10 @@ diff -urN tmp/dec/apktool.yml tmp/mod/apktool.yml
 @@ -13,7 +13,7 @@
    renameManifestPackage: null
  versionInfo:
-   versionCode: 180
+-  versionCode: 180
++  versionCode: 181
 -  versionName: 1.35.6
-+  versionName: 1.35.6+0.1.1
++  versionName: 1.35.6+0.2.0
  resourcesAreCompressed: false
  sharedLibrary: false
  sparseResources: false

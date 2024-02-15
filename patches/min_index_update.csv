@@ -1,0 +1,5 @@
+id,key,value
+0x7f050032,pref_general_min_index_update_default_value,false
+0x7f120488,pref_general_min_index_update,【実験的】低負荷アップデート
+0x7f120489,pref_general_min_index_update_summary,目次アップデート時のアクセスを最小限に抑える
+0x7f120490,pref_key_general_min_index_update,min_index_update

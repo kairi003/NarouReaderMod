@@ -1,0 +1,219 @@
+diff -urwN -U5 tmp/dec/res/values/bools.xml tmp/mod/res/values/bools.xml
+--- tmp/dec/res/values/bools.xml	2024-02-15 07:12:19.054817072 +0900
++++ tmp/mod/res/values/bools.xml	2024-02-15 07:30:19.944363801 +0900
+@@ -48,6 +48,7 @@
+     <bool name="pref_viewer_smooth_scroll_default">true</bool>
+     <bool name="pref_viewer_use_custom_brightness_default">false</bool>
+     <bool name="pref_viewer_use_custom_color_default">false</bool>
+     <bool name="pref_viewer_use_ruby_default">true</bool>
+     <bool name="workmanager_test_configuration">false</bool>
++    <bool name="pref_general_min_index_update_default_value">false</bool>
+ </resources>
+diff -urwN -U5 tmp/dec/res/values/public.xml tmp/mod/res/values/public.xml
+--- tmp/dec/res/values/public.xml	2024-02-15 07:12:19.054817072 +0900
++++ tmp/mod/res/values/public.xml	2024-02-15 07:30:19.944363801 +0900
+@@ -6943,6 +6943,10 @@
+     <public type="xml" name="general_pref_viewer" id="0x7f150009" />
+     <public type="xml" name="image_share_filepaths" id="0x7f15000a" />
+     <public type="xml" name="remote_config_defaults" id="0x7f15000b" />
+     <public type="xml" name="simple_pref" id="0x7f15000c" />
+     <public type="xml" name="splits0" id="0x7f15000d" />
++    <public type="bool" name="pref_general_min_index_update_default_value" id="0x7f050032" />
++    <public type="string" name="pref_general_min_index_update" id="0x7f120488" />
++    <public type="string" name="pref_general_min_index_update_summary" id="0x7f120489" />
++    <public type="string" name="pref_key_general_min_index_update" id="0x7f120490" />
+ </resources>
+\ No newline at end of file
+diff -urwN -U5 tmp/dec/res/values/strings.xml tmp/mod/res/values/strings.xml
+--- tmp/dec/res/values/strings.xml	2024-02-15 07:12:19.054817072 +0900
++++ tmp/mod/res/values/strings.xml	2024-02-15 07:30:19.944363801 +0900
+@@ -1227,6 +1227,9 @@
+     <string name="writer_list_last_read">最近読んだ作品</string>
+     <string name="writer_list_search_hint">作者を検索</string>
+     <string name="writer_pager_tab_name_excluded">除外中</string>
+     <string name="writer_pager_tab_name_favorite">お気に入り</string>
+     <string name="writer_pager_tab_name_imported">インポート済み</string>
++    <string name="pref_general_min_index_update">【実験的】低負荷アップデート</string>
++    <string name="pref_general_min_index_update_summary">目次アップデート時のアクセスを最小限に抑える</string>
++    <string name="pref_key_general_min_index_update">min_index_update</string>
+ </resources>
+diff -urwN -U5 tmp/dec/res/xml/general_pref_basic.xml tmp/mod/res/xml/general_pref_basic.xml
+--- tmp/dec/res/xml/general_pref_basic.xml	2024-02-15 07:12:19.054817072 +0900
++++ tmp/mod/res/xml/general_pref_basic.xml	2024-02-15 07:30:19.954363796 +0900
+@@ -1,9 +1,10 @@
+ <?xml version="1.0" encoding="utf-8"?>
+ <PreferenceScreen
+   xmlns:android="http://schemas.android.com/apk/res/android">
+     <PreferenceCategory android:title="@string/pref_basic">
++        <CheckBoxPreference android:title="@string/pref_general_min_index_update" android:key="@string/pref_key_general_min_index_update" android:summary="@string/pref_general_min_index_update_summary" android:widgetLayout="@layout/l_switch" android:defaultValue="@bool/pref_general_min_index_update_default_value" />
+         <ListPreference android:entries="@array/pref_theme" android:title="@string/pref_theme" android:key="@string/pref_key_general_theme" android:summary="@string/pref_theme_summary" android:dialogTitle="@string/pref_theme_summary" android:entryValues="@array/pref_theme_values" />
+         <com.tscsoft.naroureader.preferences.ColorSelectPreference android:title="@string/pref_general_theme_color_primary" android:key="?pref_key_theme_color_primary" android:summary="@string/pref_general_theme_color_primary_summary" android:dialogTitle="@string/pref_general_theme_color_primary" />
+         <com.tscsoft.naroureader.preferences.ColorSelectPreference android:title="@string/pref_general_theme_color_accent" android:key="?pref_key_theme_color_accent" android:summary="@string/pref_general_theme_color_accent_summary" android:dialogTitle="@string/pref_general_theme_color_accent" />
+         <CheckBoxPreference android:title="@string/pref_general_use_colored_navigation_bar" android:key="@string/pref_key_general_use_colored_navigation_bar" android:summary="@string/pref_general_use_colored_navigation_bar_summary" android:widgetLayout="@layout/l_switch" android:defaultValue="@bool/pref_general_use_colored_navigation_bar_default_value" />
+         <com.tscsoft.naroureader.preferences.DirectorySelectPreference android:title="@string/pref_cache_location" android:key="@string/pref_key_cache_dir" android:summary="@string/pref_cache_location_summary" android:dialogTitle="@string/pref_cache_location" />
+diff -urwN -U5 tmp/dec/smali_classes2/com/tscsoft/naroureader/R$bool.smali tmp/mod/smali_classes2/com/tscsoft/naroureader/R$bool.smali
+--- tmp/dec/smali_classes2/com/tscsoft/naroureader/R$bool.smali	2024-02-15 07:12:19.354816949 +0900
++++ tmp/mod/smali_classes2/com/tscsoft/naroureader/R$bool.smali	2024-02-15 07:30:19.944363801 +0900
+@@ -112,10 +112,11 @@
+ 
+ .field public static final pref_viewer_use_ruby_default:I = 0x7f050030
+ 
+ .field public static final workmanager_test_configuration:I = 0x7f050031
+ 
++.field public static final pref_general_min_index_update_default_value:I = 0x7f050032
+ 
+ # direct methods
+ .method private constructor <init>()V
+     .locals 0
+ 
+diff -urwN -U5 tmp/dec/smali_classes2/com/tscsoft/naroureader/R$string.smali tmp/mod/smali_classes2/com/tscsoft/naroureader/R$string.smali
+--- tmp/dec/smali_classes2/com/tscsoft/naroureader/R$string.smali	2024-02-15 07:12:19.354816949 +0900
++++ tmp/mod/smali_classes2/com/tscsoft/naroureader/R$string.smali	2024-02-15 07:30:19.944363801 +0900
+@@ -2332,10 +2332,15 @@
+ 
+ .field public static final writer_pager_tab_name_favorite:I = 0x7f120486
+ 
+ .field public static final writer_pager_tab_name_imported:I = 0x7f120487
+ 
++.field public static final pref_general_min_index_update:I = 0x7f120488
++
++.field public static final pref_general_min_index_update_summary:I = 0x7f120489
++
++.field public static final pref_key_general_min_index_update:I = 0x7f120490
+ 
+ # direct methods
+ .method private constructor <init>()V
+     .locals 0
+ 
+diff -urwN -U5 tmp/dec/smali_classes2/com/tscsoft/naroureader/beans/ListBean.smali tmp/mod/smali_classes2/com/tscsoft/naroureader/beans/ListBean.smali
+--- tmp/dec/smali_classes2/com/tscsoft/naroureader/beans/ListBean.smali	2024-02-15 07:12:19.354816949 +0900
++++ tmp/mod/smali_classes2/com/tscsoft/naroureader/beans/ListBean.smali	2024-02-15 08:10:40.103342441 +0900
+@@ -87,10 +87,14 @@
+ 
+ .field private userId:Ljava/lang/String;
+ 
+ .field private writer:Ljava/lang/String;
+ 
++.field private prevAllNo:I
++
++.field private workMode:Lcom/tscsoft/naroureader/services/ServiceItem$WorkMode;
++
+ 
+ # direct methods
+ .method public constructor <init>()V
+     .locals 2
+ 
+@@ -888,13 +892,27 @@
+     iput-object v0, p0, Lcom/tscsoft/naroureader/beans/ListBean;->storyUpdateFlg:Ljava/lang/String;
+ 
+     .line 839
+     invoke-virtual {p1}, Lcom/tscsoft/naroureader/beans/ListBean;->getKeywordUpdateFlg()Ljava/lang/String;
+ 
+-    move-result-object p1
++    move-result-object v0
++
++    iput-object v0, p0, Lcom/tscsoft/naroureader/beans/ListBean;->keywordUpdateFlg:Ljava/lang/String;
++
++    # copy p1->allNo to p0->prevAllNo
++    invoke-virtual {p1}, Lcom/tscsoft/naroureader/beans/ListBean;->getAllNo()I
++
++    move-result v0
++
++    iput v0, p0, Lcom/tscsoft/naroureader/beans/ListBean;->prevAllNo:I
+ 
+-    iput-object p1, p0, Lcom/tscsoft/naroureader/beans/ListBean;->keywordUpdateFlg:Ljava/lang/String;
++    # copy p1->workMode to p0->workMode
++    invoke-virtual {p1}, Lcom/tscsoft/naroureader/beans/ListBean;->getWorkMode()Lcom/tscsoft/naroureader/services/ServiceItem$WorkMode;
++
++    move-result-object v0
++
++    iput-object v0, p0, Lcom/tscsoft/naroureader/beans/ListBean;->workMode:Lcom/tscsoft/naroureader/services/ServiceItem$WorkMode;
+ 
+     return-void
+ .end method
+ 
+ .method public getAllNo()I
+@@ -2662,5 +2680,37 @@
+     .line 249
+     invoke-virtual {p0, p1}, Lcom/tscsoft/naroureader/beans/ListBean;->setChecked(Z)V
+ 
+     return-void
+ .end method
++
++.method public getPrevAllNo()I
++    .locals 1
++
++    iget v0, p0, Lcom/tscsoft/naroureader/beans/ListBean;->prevAllNo:I
++
++    return v0
++.end method
++
++.method public setPrevAllNo(I)V
++    .locals 0
++
++    iput p1, p0, Lcom/tscsoft/naroureader/beans/ListBean;->prevAllNo:I
++
++    return-void
++.end method
++
++.method public getWorkMode()Lcom/tscsoft/naroureader/services/ServiceItem$WorkMode;
++    .locals 1
++
++    iget-object v0, p0, Lcom/tscsoft/naroureader/beans/ListBean;->workMode:Lcom/tscsoft/naroureader/services/ServiceItem$WorkMode;
++
++    return-object v0
++.end method
++
++.method public setWorkMode(Lcom/tscsoft/naroureader/services/ServiceItem$WorkMode;)V
++    .locals 0
++
++    iput-object p1, p0, Lcom/tscsoft/naroureader/beans/ListBean;->workMode:Lcom/tscsoft/naroureader/services/ServiceItem$WorkMode;
++
++    return-void
++.end method
+diff -urwN -U5 tmp/dec/smali_classes2/com/tscsoft/naroureader/settings/GS.smali tmp/mod/smali_classes2/com/tscsoft/naroureader/settings/GS.smali
+--- tmp/dec/smali_classes2/com/tscsoft/naroureader/settings/GS.smali	2024-02-15 07:12:19.394816931 +0900
++++ tmp/mod/smali_classes2/com/tscsoft/naroureader/settings/GS.smali	2024-02-15 07:30:19.944363801 +0900
+@@ -2874,6 +2874,24 @@ const v2, 0x7f050018
+     return v0
+ .end method
+ 
++.method public needMinIndexUpdate()Z
++    .locals 3
++
++    iget-object v0, p0, Lcom/tscsoft/naroureader/settings/GS;->pub:Landroid/content/SharedPreferences;
++
++    # pref_key_general_min_index_update
++    const v1, 0x7f120490
++
++    # pref_general_min_index_update_default_value
++    const v2, 0x7f050032
++
++    invoke-direct {p0, v0, v1, v2}, Lcom/tscsoft/naroureader/settings/GS;->getBoolean(Landroid/content/SharedPreferences;II)Z
++
++    move-result v0
++
++    return v0
++.end method
++
+ .method public needWeeklyBatch()Z
+     .locals 4
+
+diff -urwN -U5 tmp/dec/smali_classes2/com/tscsoft/naroureader/utils/UpdateManager.smali tmp/mod/smali_classes2/com/tscsoft/naroureader/utils/UpdateManager.smali
+--- tmp/dec/smali_classes2/com/tscsoft/naroureader/utils/UpdateManager.smali	2024-02-15 07:12:19.394816931 +0900
++++ tmp/mod/smali_classes2/com/tscsoft/naroureader/utils/UpdateManager.smali	2024-02-15 08:18:30.623144241 +0900
+@@ -260,10 +260,14 @@
+             Ljava/lang/InterruptedException;,
+             Ljava/text/ParseException;
+         }
+     .end annotation
+ 
++    # set WorkMode to ListBean
++    iget-object v0, p0, Lcom/tscsoft/naroureader/utils/UpdateManager;->mNovel:Lcom/tscsoft/naroureader/beans/ListBean;
++    invoke-virtual {v0, p4}, Lcom/tscsoft/naroureader/beans/ListBean;->setWorkMode(Lcom/tscsoft/naroureader/services/ServiceItem$WorkMode;)V
++
+     .line 473
+     new-instance v0, Ljava/util/ArrayList;
+ 
+     invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
+ 
