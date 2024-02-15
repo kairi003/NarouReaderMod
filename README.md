@@ -30,10 +30,10 @@ SHA256: FD:F3:16:B3:60:09:7A:63:C9:5E:7A:13:A9:36:B0:38:9E:47:5D:07:27:23:3A:F4:
 # バイナリパッチ
 - ツールの用意や署名が面倒な場合はバイナリパッチを利用してください。
 - できればapktoolを使ってソースパッチを適用することを推奨します。
-- バイナリパッチはAPKPureのなろうリーダv1.35の単一apkにのみ適用可能です。
+- バイナリパッチはAPKPureのなろうリーダv1.35.6の単一apkにのみ適用可能です。
 
 ## 必要なもの
-- なろうリーダv1.35 (APKPure
+- なろうリーダv1.35.6 (APKPure
 - bsdiff/bspatch
   - Windows : https://github.com/cnSchwarzer/bsdiff-win/releases/
   - Linux : `sudo apt install bsdiff`
@@ -91,14 +91,25 @@ keytool -genkeypair -v -keystore .keystore -alias narou-mod -keyalg RSA -keysize
 ```
 
 # パッチによる変更内容
+### rename.sh
+- パッケージ名を変更 (`com.tscsoft.naroureader` -> `com.tscsoft.naroureader_mod`)
+- アプリ名を変更 (`なろうリーダ` -> `なろうリーダ[MOD]`)
+- バージョン名を変更 (`+{MOD version}`)を追加
+- アイコン色を変更
+
 ### com.tscsoft.naroureader_mod_mod.utils.Modding.smali
 - 目次ページを全て読み込むための関数 `patchNovelHtml` を追加
 
-### com.tscsoft.naroureader_mod_mod.utils.UpdateManager.smali.diff
-- `patchNovelHtml` を呼び出すように変更
+### fix-update-100.diff
+- `com.tscsoft.naroureader_mod_mod.utils.UpdateManager` で `patchNovelHtml` を呼び出すように変更
+
+### min-index-update.diff
+- 各リソース定義に `min_index_update` 設定値関連を追加
+- `ListBean` に `workMode`, `prevAllNo` フィールド及びsetter/getterを追加
+  - 上記フィールドの処理を`ListBean`と`UpdateManager`に追加
 
 ### org.jsoup
-- 最適化でメソッドが削除されているため最適化を無効化したsmaliに差し替え
+- 最適化でメソッドが削除されているためminifyを無効化したsmaliに差し替え
 
 ### okhttp3
 - SSL通信でクラッシュする不具合が修正されているためバージョンアップ
