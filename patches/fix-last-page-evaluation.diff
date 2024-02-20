@@ -1,0 +1,18 @@
+diff -urwN -U5 tmp/dec/smali_classes2/com/tscsoft/naroureader/domain/usecases/GetNovelLastPageUrlUseCase.smali tmp/mod/smali_classes2/com/tscsoft/naroureader/domain/usecases/GetNovelLastPageUrlUseCase.smali
+--- tmp/dec/smali_classes2/com/tscsoft/naroureader/domain/usecases/GetNovelLastPageUrlUseCase.smali	2024-02-20 20:38:28.982910964 +0900
++++ tmp/mod/smali_classes2/com/tscsoft/naroureader/domain/usecases/GetNovelLastPageUrlUseCase.smali	2024-02-20 20:45:11.862811546 +0900
+@@ -84,10 +84,14 @@
+ 
+     invoke-virtual {v2, v0}, Lcom/tscsoft/naroureader/http/HttpGet;->get(Ljava/lang/String;)Ljava/lang/String;
+ 
+     move-result-object v0
+ 
++    invoke-static {v0, v2}, Lcom/tscsoft/naroureader/utils/Modding;->getLastIndexPageHtml(Ljava/lang/String;Lcom/tscsoft/naroureader/http/HttpGet;)Ljava/lang/String;
++
++    move-result-object v0
++
+     .line 65
+     invoke-static {v0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+ 
+     move-result v2
+ 

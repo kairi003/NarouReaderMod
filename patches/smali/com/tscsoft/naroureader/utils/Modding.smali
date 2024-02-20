@@ -13,6 +13,87 @@
     return-void
 .end method
 
+.method public static getLastIndexPageHtml(Ljava/lang/String;Lcom/tscsoft/naroureader/http/HttpGet;)Ljava/lang/String;
+    .locals 3
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/io/IOException;
+        }
+    .end annotation
+
+    .line 84
+    invoke-static {p0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    return-object p0
+
+    .line 85
+    :cond_0
+    invoke-static {p0}, Lorg/jsoup/Jsoup;->parse(Ljava/lang/String;)Lorg/jsoup/nodes/Document;
+
+    move-result-object v0
+
+    const-string v1, "a.novelview_pager-last[href]"
+
+    .line 86
+    invoke-virtual {v0, v1}, Lorg/jsoup/nodes/Document;->selectFirst(Ljava/lang/String;)Lorg/jsoup/nodes/Element;
+
+    move-result-object v0
+
+    if-nez v0, :cond_1
+
+    return-object p0
+
+    .line 88
+    :cond_1
+    new-instance p0, Ljava/net/URL;
+
+    invoke-virtual {p1}, Lcom/tscsoft/naroureader/http/HttpGet;->getActualUrl()Ljava/net/URL;
+
+    move-result-object v1
+
+    const-string v2, "href"
+
+    invoke-virtual {v0, v2}, Lorg/jsoup/nodes/Element;->attr(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-direct {p0, v1, v0}, Ljava/net/URL;-><init>(Ljava/net/URL;Ljava/lang/String;)V
+
+    .line 89
+    new-instance v0, Ljava/lang/StringBuilder;
+
+    const-string v1, "Fetch: "
+
+    invoke-direct {v0, v1}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
+
+    invoke-virtual {v0, p0}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v0
+
+    const-string v1, "NarouModding"
+
+    invoke-static {v1, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 90
+    invoke-virtual {p0}, Ljava/net/URL;->toExternalForm()Ljava/lang/String;
+
+    move-result-object p0
+
+    invoke-virtual {p1, p0}, Lcom/tscsoft/naroureader/http/HttpGet;->get(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object p0
+
+    return-object p0
+.end method
+
 .method public static patchNovelHtml(Ljava/lang/String;Lcom/tscsoft/naroureader/http/HttpGet;Lcom/tscsoft/naroureader/beans/ListBean;)Ljava/lang/String;
     .locals 8
     .annotation system Ldalvik/annotation/Throws;
