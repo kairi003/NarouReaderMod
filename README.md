@@ -3,6 +3,8 @@
 
 パッチsmaliのソースプロジェクトは[こちら](https://github.com/kairi003/NarouReaderMod-source)
 
+最も簡単な利用方法は [こちら](./SIMPLE_USAGE.md) を参照してください。
+
 # 注意
 - 本パッチは非公式のものであり、なろうリーダの開発者とは無関係です。不具合があっても本家開発者に問い合わせないでください。
 - 本パッチを利用することでアプリが正常に動作しなくなる可能性があります。自己責任でご利用ください。
@@ -35,6 +37,8 @@ SHA256: FD:F3:16:B3:60:09:7A:63:C9:5E:7A:13:A9:36:B0:38:9E:47:5D:07:27:23:3A:F4:
 ## 必要なもの
 - なろうリーダv1.35.6 (APKPure
 - bsdiff/bspatch
+  - **ブラウザ版を作りました**: https://kairi003.github.io/bsdiff-wasm/
+    - サーバーにアップロードせずにローカルで動作するので安全です
   - Windows : https://github.com/cnSchwarzer/bsdiff-win/releases/
   - Linux : `sudo apt install bsdiff`
   - Mac : `brew install bsdiff`
@@ -42,13 +46,19 @@ SHA256: FD:F3:16:B3:60:09:7A:63:C9:5E:7A:13:A9:36:B0:38:9E:47:5D:07:27:23:3A:F4:
   - https://github.com/kairi003/NarouReaderMod/releases からダウンロード
 
 ## 適用方法
+### ブラウザでの適用
+1. https://kairi003.github.io/bsdiff-wasm/ にアクセス
+2. **bspatch** の **OldFile** になろうリーダのapkを、**NewFile** に `narou-mod.bsdiff` を選択
+3. **bspatch** ボタンを押す
+
+### コマンドでの適用
 1. なろうリーダのapkを`original.apk`という名前で`narou-mod.bsdiff`と同じディレクトリに配置
    - windowsの場合は`bspatch.exe`も同じディレクトリに配置
 2. コマンドラインやターミナルを開き以下のコマンドで`narou-mod.bsdiff`を適用
 ```bash
 bspatch original.apk narou-mod.apk narou-mod.bsdiff
 ```
-3. 署名ハッシュはリリースページに記載されています。改竄されていないことを確認してください。
+1. 署名ハッシュはリリースページに記載されています。改竄されていないことを確認してください。
 ```bash
 keytool -printcert -jarfile narou-mod.apk
 ```
