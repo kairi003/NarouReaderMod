@@ -7,7 +7,9 @@
 - アプリが見つからない場合は `com.tscsoft.naroureader` で検索してください
 
 ## 2. パッチファイルのダウンロード
-- https://github.com/kairi003/NarouReaderMod/releases からダウンロード
+- [リリースページ](https://github.com/kairi003/NarouReaderMod/releases) から `narou-mod-vXXXX.bsdiff` をダウンロードしてください
+- 各リリース下部の **Assets** からダウンロードできます
+- 多分最新版を選ぶといいと思います
 
 ## 3. パッチの適用
 - [bsdiff-wasm](https://kairi003.github.io/bsdiff-wasm/) を利用するのが簡単です
