@@ -14,7 +14,7 @@
 ## 3. パッチの適用
 - [bsdiff-wasm](https://kairi003.github.io/bsdiff-wasm/) を利用するのが簡単です
 - ブラウザで動作しますがサーバーにファイルをアップロードはしません
-- **bspatch** の **OldFile** になろうリーダのapkを、**NewFile** に `narou-mod.bsdiff` を選択し、**bspatch** ボタンを押すとパッチが適用されます
+- **bspatch** の **OldFile** になろうリーダのapkを、**PatchFile** に `narou-mod.bsdiff` を選択し、**bspatch** ボタンを押すとパッチが適用されます
 
 ## 4. インストール
 - パッチが適用されたapkを端末に転送し、インストールしてください

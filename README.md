@@ -48,7 +48,7 @@ SHA256: FD:F3:16:B3:60:09:7A:63:C9:5E:7A:13:A9:36:B0:38:9E:47:5D:07:27:23:3A:F4:
 ## 適用方法
 ### ブラウザでの適用
 1. https://kairi003.github.io/bsdiff-wasm/ にアクセス
-2. **bspatch** の **OldFile** になろうリーダのapkを、**NewFile** に `narou-mod.bsdiff` を選択
+2. **bspatch** の **OldFile** になろうリーダのapkを、**PatchFile** に `narou-mod.bsdiff` を選択
 3. **bspatch** ボタンを押す
 
 ### コマンドでの適用
