@@ -55,7 +55,7 @@ SHA256: 5fc140ef920c1ffc91b8ad5411b43e3fe80e647db045326ab98e7ec7af2fc635
 ### ブラウザでの適用
 1. https://kairi003.github.io/bsdiff-wasm/ にアクセス
 2. **bspatch** の **OldFile** になろうリーダのapkを、**PatchFile** に `narou-mod.bsdiff` を選択
-3. **bspatch** ボタンを押す
+3. **run** ボタンを押す
 
 ### コマンドでの適用
 1. なろうリーダのapkを`original.apk`という名前で`narou-mod.bsdiff`と同じディレクトリに配置
