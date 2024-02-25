@@ -41,7 +41,7 @@ SHA256: 5fc140ef920c1ffc91b8ad5411b43e3fe80e647db045326ab98e7ec7af2fc635
 - バイナリパッチはAPKPureのなろうリーダv1.35.6の単一apkにのみ適用可能です。
 
 ## 必要なもの
-- なろうリーダv1.35.6 (APKPure
+- なろうリーダ v1.35.6 単一apk (APKPureから入手)
 - bsdiff/bspatch
   - **ブラウザ版を作りました**: https://kairi003.github.io/bsdiff-wasm/
     - サーバーにアップロードせずにローカルで動作するので安全です
