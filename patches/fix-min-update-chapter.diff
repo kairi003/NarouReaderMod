@@ -1,0 +1,124 @@
+diff -urwN -U5 tmp/dec/smali_classes2/com/tscsoft/naroureader/NovelHtmlObject$EpisodeFetcher.smali tmp/mod/smali_classes2/com/tscsoft/naroureader/NovelHtmlObject$EpisodeFetcher.smali
+--- tmp/dec/smali_classes2/com/tscsoft/naroureader/NovelHtmlObject$EpisodeFetcher.smali	2024-02-24 06:26:42.000000000 +0900
++++ tmp/mod/smali_classes2/com/tscsoft/naroureader/NovelHtmlObject$EpisodeFetcher.smali	2024-02-27 10:50:47.718780084 +0900
+@@ -233,10 +233,18 @@
+     iget v0, p0, Lcom/tscsoft/naroureader/NovelHtmlObject$EpisodeFetcher;->mChapter:I
+ 
+     return v0
+ .end method
+ 
++.method public setChapter(I)V
++    .locals 1
++
++    iput p1, p0, Lcom/tscsoft/naroureader/NovelHtmlObject$EpisodeFetcher;->mChapter:I
++
++    return-void
++.end method
++
+ .method public getChapterTitle()Ljava/lang/String;
+     .locals 1
+ 
+     .line 129
+     iget-object v0, p0, Lcom/tscsoft/naroureader/NovelHtmlObject$EpisodeFetcher;->mChapterElement:Lorg/jsoup/nodes/Element;
+diff -urwN -U5 tmp/dec/smali_classes2/com/tscsoft/naroureader/beans/ListBean.smali tmp/mod/smali_classes2/com/tscsoft/naroureader/beans/ListBean.smali
+--- tmp/dec/smali_classes2/com/tscsoft/naroureader/beans/ListBean.smali	2024-02-24 06:29:07.000000000 +0900
++++ tmp/mod/smali_classes2/com/tscsoft/naroureader/beans/ListBean.smali	2024-02-27 10:40:46.428967778 +0900
+@@ -91,10 +91,12 @@
+ 
+ .field private prevAllNo:I
+ 
+ .field private workMode:Lcom/tscsoft/naroureader/services/ServiceItem$WorkMode;
+ 
++.field private updateStartNo:I
++
+ 
+ # direct methods
+ .method public constructor <init>()V
+     .locals 2
+ 
+@@ -2712,5 +2714,21 @@
+ 
+     iput-object p1, p0, Lcom/tscsoft/naroureader/beans/ListBean;->workMode:Lcom/tscsoft/naroureader/services/ServiceItem$WorkMode;
+ 
+     return-void
+ .end method
++
++.method public getUpdateStartNo()I
++    .locals 1
++
++    iget v0, p0, Lcom/tscsoft/naroureader/beans/ListBean;->updateStartNo:I
++
++    return v0
++.end method
++
++.method public setUpdateStartNo(I)V
++    .locals 0
++
++    iput p1, p0, Lcom/tscsoft/naroureader/beans/ListBean;->updateStartNo:I
++
++    return-void
++.end method
+diff -urwN -U5 tmp/dec/smali_classes2/com/tscsoft/naroureader/utils/UpdateManager.smali tmp/mod/smali_classes2/com/tscsoft/naroureader/utils/UpdateManager.smali
+--- tmp/dec/smali_classes2/com/tscsoft/naroureader/utils/UpdateManager.smali	2024-02-24 06:29:07.000000000 +0900
++++ tmp/mod/smali_classes2/com/tscsoft/naroureader/utils/UpdateManager.smali	2024-02-27 11:27:01.478090955 +0900
+@@ -5009,10 +5012,12 @@
+     :try_start_0
+     invoke-virtual {v0}, Lcom/tscsoft/naroureader/NovelHtmlObject;->episodeFetcher()Lcom/tscsoft/naroureader/NovelHtmlObject$EpisodeFetcher;
+ 
+     move-result-object v1
+ 
++    invoke-direct {p0, p1, v1}, Lcom/tscsoft/naroureader/utils/UpdateManager;->modEpisodeFetcherChapter(Lcom/tscsoft/naroureader/beans/ListBean;Lcom/tscsoft/naroureader/NovelHtmlObject$EpisodeFetcher;)V
++
+     .line 662
+     new-instance v2, Ljava/util/ArrayList;
+ 
+     invoke-direct {p0, p1, v1}, Lcom/tscsoft/naroureader/utils/UpdateManager;->updateEpisode(Lcom/tscsoft/naroureader/beans/ListBean;Lcom/tscsoft/naroureader/NovelHtmlObject$EpisodeFetcher;)Ljava/util/List;
+ 
+@@ -5751,5 +5756,47 @@
+ 
+     move-result-object p1
+ 
+     return-object p1
+ .end method
++
++.method private modEpisodeFetcherChapter(Lcom/tscsoft/naroureader/beans/ListBean;Lcom/tscsoft/naroureader/NovelHtmlObject$EpisodeFetcher;)V
++    .locals 3
++
++    .line 15
++    invoke-virtual {p1}, Lcom/tscsoft/naroureader/beans/ListBean;->getUpdateStartNo()I
++
++    move-result v0
++
++    const/4 v1, 0x1
++
++    sub-int/2addr v0, v1
++
++    if-ge v0, v1, :cond_0
++
++    return-void
++
++    .line 17
++    :cond_0
++    new-instance v1, Lcom/tscsoft/naroureader/beans/NovelBean;
++
++    invoke-direct {v1}, Lcom/tscsoft/naroureader/beans/NovelBean;-><init>()V
++
++    .line 18
++    invoke-virtual {p1}, Lcom/tscsoft/naroureader/beans/ListBean;->getNcode()Ljava/lang/String;
++
++    move-result-object p1
++
++    iget-object v2, p0, Lcom/tscsoft/naroureader/utils/UpdateManager;->mEpisodeAccessor:Lcom/tscsoft/naroureader/beans/NovelBean$Accessor;
++
++    invoke-direct {p0, p1, v0, v1, v2}, Lcom/tscsoft/naroureader/utils/UpdateManager;->loadEpisode(Ljava/lang/String;ILcom/tscsoft/naroureader/beans/NovelBean;Lcom/tscsoft/naroureader/beans/NovelBean$Accessor;)Z
++
++    .line 19
++    invoke-virtual {v1}, Lcom/tscsoft/naroureader/beans/NovelBean;->getChapter()I
++
++    move-result p1
++
++    .line 20
++    invoke-virtual {p2, p1}, Lcom/tscsoft/naroureader/NovelHtmlObject$EpisodeFetcher;->setChapter(I)V
++
++    return-void
++.end method

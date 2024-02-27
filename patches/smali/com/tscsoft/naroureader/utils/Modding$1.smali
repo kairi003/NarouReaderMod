@@ -22,7 +22,7 @@
 .method static constructor <clinit>()V
     .locals 3
 
-    .line 72
+    .line 89
     invoke-static {}, Lcom/tscsoft/naroureader/settings/ViewerSetting$ViewMode;->values()[Lcom/tscsoft/naroureader/settings/ViewerSetting$ViewMode;
 
     move-result-object v0
