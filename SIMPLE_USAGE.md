@@ -1,5 +1,8 @@
 # なろうリーダ改造パッチの適用方法(簡易版)
 
+- **推奨: [Google Colaboratoryにノートブック](https://colab.research.google.com/drive/1HApG6lMTqxDtJarBjVyKPYDVLKdnXKYt?usp=sharing)を作成したため、そちらでソースパッチを行うこともできます**
+  -  ノートブックは [NarouReaderMod.ipynb](./NarouReaderMod.ipynb) と同じものなので、こちらをColaboratoryにアップロードしても使えます
+
 ## 1. なろうリーダ v1.35.6 の単一apkを入手
 - APKPure からダウンロード
 - 非公式ストアですが、Androidアプリは公式から改竄がされていないことが署名によって確認できます

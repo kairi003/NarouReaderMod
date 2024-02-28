@@ -3,7 +3,10 @@
 
 パッチsmaliのソースプロジェクトは[こちら](https://github.com/kairi003/NarouReaderMod-source)
 
-**手順が難しいと感じた場合は [なろうリーダ改造パッチの適用方法(簡易版)](./SIMPLE_USAGE.md) を参照**
+- **手順が難しいと感じた場合は [なろうリーダ改造パッチの適用方法(簡易版)](./SIMPLE_USAGE.md) を参照**
+- **Google Colaboratoryに[パッチ適用用のノートブック](https://colab.research.google.com/drive/1HApG6lMTqxDtJarBjVyKPYDVLKdnXKYt?usp=sharing)を作成しました**
+  - こちらにアクセスして手順に従うことで環境構築無しにソースパッチを行うことができます
+  - 内容は [NarouReaderMod.ipynb](./NarouReaderMod.ipynb) と同じものなので、こちらをColaboratoryにアップロードしても使えます
 
 # 注意
 - v0.2.1: 現在低負荷更新を行うと目次の章が正常に反映されなくなる不具合が報告されています
