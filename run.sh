@@ -27,4 +27,5 @@ apktool build -f -o tmp/mod-unaligned.apk tmp/dec
 
 zipalign -f -v 4 tmp/mod-unaligned.apk tmp/mod-unsigned.apk
 
-apksigner sign --ks .keystore -v --v2-signing-enabled true --ks-key-alias narou-mod --out narou-mod.apk tmp/mod-unsigned.apk
+KEY_PASS=${KEY_PASS:=stdin}
+apksigner sign --ks .keystore -v --v2-signing-enabled true --ks-key-alias narou-mod --out narou-mod.apk --ks-pass $KEY_PASS tmp/mod-unsigned.apk

@@ -81,7 +81,7 @@ keytool -printcert -jarfile narou-mod.apk
 - keytool : JDKに含まれる
 - apksigner : Android SDKに含まれる
 - zipalign : Android SDKに含まれる
-- apktool : https://ibotpeaches.github.io/Apktool/
+- apktool (2.9.3) : https://ibotpeaches.github.io/Apktool/
 ### Ubuntuでのインストール例
 ```bash
 sudo apt update
