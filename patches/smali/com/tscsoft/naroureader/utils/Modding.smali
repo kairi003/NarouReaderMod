@@ -40,7 +40,7 @@
         }
     .end annotation
 
-    .line 101
+    .line 102
     invoke-static {p0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
 
     move-result v0
@@ -49,15 +49,15 @@
 
     return-object p0
 
-    .line 102
+    .line 103
     :cond_0
     invoke-static {p0}, Lorg/jsoup/Jsoup;->parse(Ljava/lang/String;)Lorg/jsoup/nodes/Document;
 
     move-result-object v0
 
-    const-string v1, "a.novelview_pager-last[href]"
+    const-string v1, "a.c-pager__item--last[href]"
 
-    .line 103
+    .line 104
     invoke-virtual {v0, v1}, Lorg/jsoup/nodes/Document;->selectFirst(Ljava/lang/String;)Lorg/jsoup/nodes/Element;
 
     move-result-object v0
@@ -66,7 +66,7 @@
 
     return-object p0
 
-    .line 105
+    .line 106
     :cond_1
     new-instance p0, Ljava/net/URL;
 
@@ -82,7 +82,7 @@
 
     invoke-direct {p0, v1, v0}, Ljava/net/URL;-><init>(Ljava/net/URL;Ljava/lang/String;)V
 
-    .line 106
+    .line 107
     new-instance v0, Ljava/lang/StringBuilder;
 
     const-string v1, "Fetch: "
@@ -101,7 +101,7 @@
 
     invoke-static {v1, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 107
+    .line 108
     invoke-virtual {p0}, Ljava/net/URL;->toExternalForm()Ljava/lang/String;
 
     move-result-object p0
@@ -116,7 +116,7 @@
 .method private static getUpdateStartNo(Lorg/jsoup/nodes/Document;)I
     .locals 2
 
-    const-string v0, ".index_box .subtitle a[href]"
+    const-string v0, ".p-eplist .p-eplist__subtitle a[href]"
 
     .line 26
     invoke-virtual {p0, v0}, Lorg/jsoup/nodes/Document;->selectFirst(Ljava/lang/String;)Lorg/jsoup/nodes/Element;
@@ -293,7 +293,7 @@
 
     move-result-object v0
 
-    const-string v3, ".index_box"
+    const-string v3, ".p-eplist"
 
     .line 43
     invoke-virtual {v0, v3}, Lorg/jsoup/nodes/Document;->selectFirst(Ljava/lang/String;)Lorg/jsoup/nodes/Element;
@@ -460,7 +460,7 @@
     invoke-static {v1, p0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
     :cond_2
-    const-string p0, "a.novelview_pager-next[href]"
+    const-string p0, "a.c-pager__item--next[href]"
 
     .line 60
     invoke-virtual {v0, p0}, Lorg/jsoup/nodes/Document;->selectFirst(Ljava/lang/String;)Lorg/jsoup/nodes/Element;
@@ -597,7 +597,7 @@
     .line 72
     throw p0
 
-    .line 84
+    .line 85
     :cond_5
     :goto_1
     invoke-virtual {v0}, Lorg/jsoup/nodes/Document;->outerHtml()Ljava/lang/String;
@@ -612,12 +612,12 @@
 .method public static switchViewerMode(Lcom/tscsoft/naroureader/presenters/ViewerActivityPresenter;)V
     .locals 3
 
-    .line 88
+    .line 89
     invoke-static {}, Lcom/tscsoft/naroureader/settings/GS;->gs()Lcom/tscsoft/naroureader/settings/GS;
 
     move-result-object v0
 
-    .line 89
+    .line 90
     sget-object v1, Lcom/tscsoft/naroureader/utils/Modding$1;->$SwitchMap$com$tscsoft$naroureader$settings$ViewerSetting$ViewMode:[I
 
     invoke-virtual {v0}, Lcom/tscsoft/naroureader/settings/GS;->getViewerMode()Lcom/tscsoft/naroureader/settings/ViewerSetting$ViewMode;
@@ -640,7 +640,7 @@
 
     goto :goto_0
 
-    .line 94
+    .line 95
     :cond_0
     sget-object v1, Lcom/tscsoft/naroureader/settings/ViewerSetting$ViewMode;->HorizontalScroll:Lcom/tscsoft/naroureader/settings/ViewerSetting$ViewMode;
 
@@ -648,13 +648,13 @@
 
     goto :goto_0
 
-    .line 91
+    .line 92
     :cond_1
     sget-object v1, Lcom/tscsoft/naroureader/settings/ViewerSetting$ViewMode;->VerticalPaging:Lcom/tscsoft/naroureader/settings/ViewerSetting$ViewMode;
 
     invoke-virtual {v0, v1}, Lcom/tscsoft/naroureader/settings/GS;->setViewerMode(Lcom/tscsoft/naroureader/settings/ViewerSetting$ViewMode;)V
 
-    .line 97
+    .line 98
     :goto_0
     invoke-virtual {p0}, Lcom/tscsoft/naroureader/presenters/ViewerActivityPresenter;->onViewerPreferenceReload()V
 

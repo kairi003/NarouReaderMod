@@ -1,0 +1,149 @@
+diff -urwN -U5 tmp/dec/smali_classes2/com/tscsoft/naroureader/NovelHtmlObject$EpisodeFetcher.smali tmp/mod/smali_classes2/com/tscsoft/naroureader/NovelHtmlObject$EpisodeFetcher.smali
+--- tmp/dec/smali_classes2/com/tscsoft/naroureader/NovelHtmlObject$EpisodeFetcher.smali	2024-09-22 04:13:13.726369989 +0900
++++ tmp/mod/smali_classes2/com/tscsoft/naroureader/NovelHtmlObject$EpisodeFetcher.smali	2024-09-22 04:16:49.885333720 +0900
+@@ -181,11 +181,11 @@
+     :cond_0
+     invoke-static {p1}, Lorg/jsoup/Jsoup;->parse(Ljava/lang/String;)Lorg/jsoup/nodes/Document;
+ 
+     move-result-object p1
+ 
+-    const-string v0, ".index_box"
++    const-string v0, ".p-eplist"
+ 
+     .line 120
+     invoke-virtual {p1, v0}, Lorg/jsoup/nodes/Element;->select(Ljava/lang/String;)Lorg/jsoup/select/Elements;
+ 
+     move-result-object p1
+@@ -283,11 +283,11 @@
+ 
+     .line 162
+     :cond_0
+     iget-object v0, p0, Lcom/tscsoft/naroureader/NovelHtmlObject$EpisodeFetcher;->mEpisodeElement:Lorg/jsoup/nodes/Element;
+ 
+-    const-string v1, ".subtitle a"
++    const-string v1, ".p-eplist__subtitle a"
+ 
+     invoke-virtual {v0, v1}, Lorg/jsoup/nodes/Element;->select(Ljava/lang/String;)Lorg/jsoup/select/Elements;
+ 
+     move-result-object v0
+ 
+@@ -350,11 +350,11 @@
+     invoke-virtual {v1, v0}, Lcom/tscsoft/naroureader/beans/NovelBean;->setNumber(I)V
+ 
+     .line 177
+     iget-object v0, p0, Lcom/tscsoft/naroureader/NovelHtmlObject$EpisodeFetcher;->mEpisodeElement:Lorg/jsoup/nodes/Element;
+ 
+-    const-string v1, ".long_update"
++    const-string v1, ".p-eplist__update"
+ 
+     invoke-virtual {v0, v1}, Lorg/jsoup/nodes/Element;->select(Ljava/lang/String;)Lorg/jsoup/select/Elements;
+ 
+     move-result-object v0
+ 
+@@ -611,11 +611,11 @@
+     .line 144
+     invoke-virtual {v0}, Lorg/jsoup/nodes/Element;->className()Ljava/lang/String;
+ 
+     move-result-object v3
+ 
+-    const-string v4, "chapter_title"
++    const-string v4, "p-eplist__chapter-title"
+ 
+     invoke-virtual {v4, v3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+ 
+     move-result v3
+ 
+@@ -640,11 +640,11 @@
+     :cond_2
+     invoke-virtual {v0}, Lorg/jsoup/nodes/Element;->className()Ljava/lang/String;
+ 
+     move-result-object v3
+ 
+-    const-string v4, "novel_sublist2"
++    const-string v4, "p-eplist__sublist"
+ 
+     invoke-virtual {v4, v3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+ 
+     move-result v3
+ 
+diff -urwN -U5 tmp/dec/smali_classes2/com/tscsoft/naroureader/utils/CacheManager$H2CPatterns.smali tmp/mod/smali_classes2/com/tscsoft/naroureader/utils/CacheManager$H2CPatterns.smali
+--- tmp/dec/smali_classes2/com/tscsoft/naroureader/utils/CacheManager$H2CPatterns.smali	2024-09-22 14:26:56.262148680 +0900
++++ tmp/mod/smali_classes2/com/tscsoft/naroureader/utils/CacheManager$H2CPatterns.smali	2024-09-22 18:38:29.871621561 +0900
+@@ -36,38 +36,38 @@
+ 
+ # direct methods
+ .method static constructor <clinit>()V
+     .locals 1
+ 
+-    const-string v0, "<p class=\"novel_subtitle\">(.+?)</p>"
++    const-string v0, "<h1 class=\"p-novel__title p-novel__title--rensai\">(.+?)</h1>"
+ 
+     .line 117
+     invoke-static {v0}, Ljava/util/regex/Pattern;->compile(Ljava/lang/String;)Ljava/util/regex/Pattern;
+ 
+     move-result-object v0
+ 
+     sput-object v0, Lcom/tscsoft/naroureader/utils/CacheManager$H2CPatterns;->Subtitle:Ljava/util/regex/Pattern;
+ 
+-    const-string v0, "<div id=\"novel_p\" class=\"novel_view\">\n([\\s\\S]+?)</div>"
++    const-string v0, "<div class=\"js-novel-text p-novel__text p-novel__text--preface\">\n([\\s\\S]+?)</div>"
+ 
+     .line 118
+     invoke-static {v0}, Ljava/util/regex/Pattern;->compile(Ljava/lang/String;)Ljava/util/regex/Pattern;
+ 
+     move-result-object v0
+ 
+     sput-object v0, Lcom/tscsoft/naroureader/utils/CacheManager$H2CPatterns;->Foreword:Ljava/util/regex/Pattern;
+ 
+-    const-string v0, "<div id=\"novel_a\" class=\"novel_view\">\n([\\s\\S]+?)</div>"
++    const-string v0, "<div class=\"js-novel-text p-novel__text p-novel__text--afterword\">\n([\\s\\S]+?)</div>"
+ 
+     .line 119
+     invoke-static {v0}, Ljava/util/regex/Pattern;->compile(Ljava/lang/String;)Ljava/util/regex/Pattern;
+ 
+     move-result-object v0
+ 
+     sput-object v0, Lcom/tscsoft/naroureader/utils/CacheManager$H2CPatterns;->Afterword:Ljava/util/regex/Pattern;
+ 
+-    const-string v0, "<div id=\"novel_honbun\" class=\"novel_view\">\n([\\s\\S]+?)</div>"
++    const-string v0, "<div class=\"js-novel-text p-novel__text\">\n([\\s\\S]+?)</div>"
+ 
+     .line 120
+     invoke-static {v0}, Ljava/util/regex/Pattern;->compile(Ljava/lang/String;)Ljava/util/regex/Pattern;
+ 
+     move-result-object v0
+diff -urwN -U5 tmp/dec/smali_classes2/com/tscsoft/naroureader/utils/CacheManager.smali tmp/mod/smali_classes2/com/tscsoft/naroureader/utils/CacheManager.smali
+--- tmp/dec/smali_classes2/com/tscsoft/naroureader/utils/CacheManager.smali	2024-09-22 17:50:39.631651001 +0900
++++ tmp/mod/smali_classes2/com/tscsoft/naroureader/utils/CacheManager.smali	2024-09-22 18:38:29.871621561 +0900
+@@ -21,13 +21,13 @@
+ 
+ .field public static final EXT_TXT:Ljava/lang/String; = ".txt"
+ 
+ .field private static final KANA:Ljava/lang/String; = "[\\p{InHiragana}\\p{InKatakana}\u2026\u30fb]"
+ 
+-.field private static final RE_H2C_AFTERWORD:Ljava/lang/String; = "<div id=\"novel_a\" class=\"novel_view\">\n([\\s\\S]+?)</div>"
++.field private static final RE_H2C_AFTERWORD:Ljava/lang/String; = "<div class=\"js-novel-text p-novel__text p-novel__text--afterword\">\n([\\s\\S]+?)</div>"
+ 
+-.field private static final RE_H2C_FOREWORD:Ljava/lang/String; = "<div id=\"novel_p\" class=\"novel_view\">\n([\\s\\S]+?)</div>"
++.field private static final RE_H2C_FOREWORD:Ljava/lang/String; = "<div class=\"js-novel-text p-novel__text p-novel__text--preface\">\n([\\s\\S]+?)</div>"
+ 
+ .field private static final RE_H2C_IMAGE_MITEMIN:Ljava/lang/String; = "<a href=\"\\w*:?//([0-9]+?)\\.mitemin\\.net/(i[0-9]+?)/\".*?>"
+ 
+ .field private static final RE_H2C_NO_RUBY:Ljava/lang/String; = "([|\uff5c])([\u300a(\uff08]([^|\uff5c\\t]{1,10}|([\\p{InHiragana}\\p{InKatakana}\u2026\u30fb]{1,10})([ \u3000]?)([\\p{InHiragana}\\p{InKatakana}\u2026\u30fb]{0,10}))[\u300b)\uff09])"
+ 
+@@ -35,13 +35,13 @@
+ 
+ .field private static final RE_H2C_NO_RUBY2:Ljava/lang/String; = "(([\\p{InCJKUnifiedIdeographs}a-zA-Z\uff41-\uff5a\uff21-\uff3a]{1,10})|([\\p{InCJKUnifiedIdeographs}a-zA-Z\uff41-\uff5a\uff21-\uff3a]{1,10})([ \u3000])([\\p{InCJKUnifiedIdeographs}a-zA-Z\uff41-\uff5a\uff21-\uff3a]{1,10}))([(\uff08\u300a]([\\p{InHiragana}\\p{InKatakana}\u2026\u30fb]{1,10})([ \u3000]?)([\\p{InHiragana}\\p{InKatakana}\u2026\u30fb]{0,10})[)\uff09\u300b])"
+ 
+ .field private static final RE_H2C_RUBY:Ljava/lang/String; = "<ruby><rb>(.+?)</rb><rp>.+?</rp><rt>(.+?)</rt><rp>.+?</rp></ruby>"
+ 
+-.field private static final RE_H2C_SUBTITLE:Ljava/lang/String; = "<p class=\"novel_subtitle\">(.+?)</p>"
++.field private static final RE_H2C_SUBTITLE:Ljava/lang/String; = "<h1 class=\"p-novel__title p-novel__title--rensai\">(.+?)</h1>"
+ 
+-.field private static final RE_H2C_TEXT:Ljava/lang/String; = "<div id=\"novel_honbun\" class=\"novel_view\">\n([\\s\\S]+?)</div>"
++.field private static final RE_H2C_TEXT:Ljava/lang/String; = "<div class=\"js-novel-text p-novel__text\">\n([\\s\\S]+?)</div>"
+ 
+ .field private static final RE_IMAGE:Ljava/lang/String; = "&lt;(i[0-9]+?)\\|([0-9]+?)&gt;"
+ 
+ .field private static final RE_IMAGE_CODE:Ljava/lang/String; = "[0-9]+?"
+ 
