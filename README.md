@@ -137,8 +137,8 @@ keytool -genkeypair -v -keystore .keystore -alias narou-mod -keyalg RSA -keysize
 ### okhttp3
 - SSL通信でクラッシュする不具合が修正されているためバージョンアップ
 
-### css class mapping
-- 小説家になろうのCSSクラス名が変更されたため、それに合わせて変更
+### fix-html-change.diff
+- 「小説家になろう」のHTML構造変更に対応
 ```
 .index_box -> .p-eplist
 .subtitle a -> a.p-eplist__subtitle
@@ -147,4 +147,9 @@ keytool -genkeypair -v -keystore .keystore -alias narou-mod -keyalg RSA -keysize
 .novelview_pager-last -> .c-pager__item--last
 chapter_title -> p-eplist__chapter-title
 novel_sublist2 -> p-eplist__sublist
+
+"<div id=\"novel_a\" class=\"novel_view\">\n([\\s\\S]+?)</div>" -> "<div class=\"js-novel-text p-novel__text p-novel__text--afterword\">\n([\\s\\S]+?)</div>"
+"<div id=\"novel_p\" class=\"novel_view\">\n([\\s\\S]+?)</div>" -> "<div class=\"js-novel-text p-novel__text p-novel__text--preface\">\n([\\s\\S]+?)</div>"
+"<p class=\"novel_subtitle\">(.+?)</p>" -> "<h1 class=\"p-novel__title p-novel__title--rensai\">(.+?)</h1>"
+"<div id=\"novel_honbun\" class=\"novel_view\">\n([\\s\\S]+?)</div>" -> "<div class=\"js-novel-text p-novel__text\">\n([\\s\\S]+?)</div>"
 ```
