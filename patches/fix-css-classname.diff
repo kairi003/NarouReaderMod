@@ -1,0 +1,68 @@
+diff -urwN -U5 tmp/dec/smali_classes2/com/tscsoft/naroureader/NovelHtmlObject$EpisodeFetcher.smali tmp/mod/smali_classes2/com/tscsoft/naroureader/NovelHtmlObject$EpisodeFetcher.smali
+--- tmp/dec/smali_classes2/com/tscsoft/naroureader/NovelHtmlObject$EpisodeFetcher.smali	2024-09-22 04:13:13.726369989 +0900
++++ tmp/mod/smali_classes2/com/tscsoft/naroureader/NovelHtmlObject$EpisodeFetcher.smali	2024-09-22 04:16:49.885333720 +0900
+@@ -181,11 +181,11 @@
+     :cond_0
+     invoke-static {p1}, Lorg/jsoup/Jsoup;->parse(Ljava/lang/String;)Lorg/jsoup/nodes/Document;
+ 
+     move-result-object p1
+ 
+-    const-string v0, ".index_box"
++    const-string v0, ".p-eplist"
+ 
+     .line 120
+     invoke-virtual {p1, v0}, Lorg/jsoup/nodes/Element;->select(Ljava/lang/String;)Lorg/jsoup/select/Elements;
+ 
+     move-result-object p1
+@@ -283,11 +283,11 @@
+ 
+     .line 162
+     :cond_0
+     iget-object v0, p0, Lcom/tscsoft/naroureader/NovelHtmlObject$EpisodeFetcher;->mEpisodeElement:Lorg/jsoup/nodes/Element;
+ 
+-    const-string v1, ".subtitle a"
++    const-string v1, "a.p-eplist__subtitle"
+ 
+     invoke-virtual {v0, v1}, Lorg/jsoup/nodes/Element;->select(Ljava/lang/String;)Lorg/jsoup/select/Elements;
+ 
+     move-result-object v0
+ 
+@@ -350,11 +350,11 @@
+     invoke-virtual {v1, v0}, Lcom/tscsoft/naroureader/beans/NovelBean;->setNumber(I)V
+ 
+     .line 177
+     iget-object v0, p0, Lcom/tscsoft/naroureader/NovelHtmlObject$EpisodeFetcher;->mEpisodeElement:Lorg/jsoup/nodes/Element;
+ 
+-    const-string v1, ".long_update"
++    const-string v1, ".p-eplist__update"
+ 
+     invoke-virtual {v0, v1}, Lorg/jsoup/nodes/Element;->select(Ljava/lang/String;)Lorg/jsoup/select/Elements;
+ 
+     move-result-object v0
+ 
+@@ -611,11 +611,11 @@
+     .line 144
+     invoke-virtual {v0}, Lorg/jsoup/nodes/Element;->className()Ljava/lang/String;
+ 
+     move-result-object v3
+ 
+-    const-string v4, "chapter_title"
++    const-string v4, "p-eplist__chapter-title"
+ 
+     invoke-virtual {v4, v3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+ 
+     move-result v3
+ 
+@@ -640,11 +640,11 @@
+     :cond_2
+     invoke-virtual {v0}, Lorg/jsoup/nodes/Element;->className()Ljava/lang/String;
+ 
+     move-result-object v3
+ 
+-    const-string v4, "novel_sublist2"
++    const-string v4, "p-eplist__sublist"
+ 
+     invoke-virtual {v4, v3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+ 
+     move-result v3
+ 

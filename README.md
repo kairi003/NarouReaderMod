@@ -137,7 +137,7 @@ keytool -genkeypair -v -keystore .keystore -alias narou-mod -keyalg RSA -keysize
 ### okhttp3
 - SSL通信でクラッシュする不具合が修正されているためバージョンアップ
 
-### css class mapping
+### fix-css-class.diff
 - 小説家になろうのCSSクラス名が変更されたため、それに合わせて変更
 ```
 .index_box -> .p-eplist
