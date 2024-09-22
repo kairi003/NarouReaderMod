@@ -84,11 +84,12 @@ keytool -printcert -jarfile narou-mod.apk
 - keytool : JDKに含まれる
 - apksigner : Android SDKに含まれる
 - zipalign : Android SDKに含まれる
-- apktool (2.9.3) : https://ibotpeaches.github.io/Apktool/
+- apktool (2.9.3) : https://apktool.org/docs/install/
 ### Ubuntuでのインストール例
 ```bash
 sudo apt update
-sudo apt install openjdk-18-jdk-headless apksigner zipalign apktool
+sudo apt install openjdk-18-jdk-headless apksigner zipalign imagemagick
+sudo ./install-apktool.sh # apktoolのインストール
 ```
 
 ## 使い方
@@ -135,3 +136,15 @@ keytool -genkeypair -v -keystore .keystore -alias narou-mod -keyalg RSA -keysize
 
 ### okhttp3
 - SSL通信でクラッシュする不具合が修正されているためバージョンアップ
+
+### css class mapping
+- 小説家になろうのCSSクラス名が変更されたため、それに合わせて変更
+```
+.index_box -> .p-eplist
+.subtitle a -> a.p-eplist__subtitle
+.long_update -> .p-eplist__update
+.novelview_pager-next -> .c-pager__item--next
+.novelview_pager-last -> .c-pager__item--last
+chapter_title -> p-eplist__chapter-title
+novel_sublist2 -> p-eplist__sublist
+```

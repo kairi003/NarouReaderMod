@@ -1,6 +1,10 @@
 /tmp/
+/tmp2/
 /.keystore
 *.apk
 *.apk.idsig
 *.bsdiff
+
+/setup.sh
+/build.sh
 /deploy.sh
