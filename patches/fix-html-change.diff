@@ -21,7 +21,7 @@ diff -urwN -U5 tmp/dec/smali_classes2/com/tscsoft/naroureader/NovelHtmlObject$Ep
      iget-object v0, p0, Lcom/tscsoft/naroureader/NovelHtmlObject$EpisodeFetcher;->mEpisodeElement:Lorg/jsoup/nodes/Element;
  
 -    const-string v1, ".subtitle a"
-+    const-string v1, ".p-eplist__subtitle a"
++    const-string v1, "a.p-eplist__subtitle"
  
      invoke-virtual {v0, v1}, Lorg/jsoup/nodes/Element;->select(Ljava/lang/String;)Lorg/jsoup/select/Elements;
  
