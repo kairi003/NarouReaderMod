@@ -1,14 +1,15 @@
 # NarouReaderMod
-なろうリーダで100話以降の目次を取得するための改造パッチ
+なろうリーダで100話以降の目次を取得するための改造パッチ (ref: [NarouReaderMod-source](https://github.com/kairi003/NarouReaderMod-source))
 
-パッチsmaliのソースプロジェクトは[こちら](https://github.com/kairi003/NarouReaderMod-source)
+**開発手順: [Wiki](https://github.com/kairi003/NarouReaderMod/wiki)**, **質問/意見 [Discussions](https://github.com/kairi003/NarouReaderMod/discussions)**, **不具合報告/機能提案: [Issues](https://github.com/kairi003/NarouReaderMod/issues)**
 
 - **手順が難しいと感じた場合は [なろうリーダ改造パッチの適用方法(簡易版)](./SIMPLE_USAGE.md) を参照**
 - **Google Colaboratoryに[パッチ適用用のノートブック](https://colab.research.google.com/drive/1HApG6lMTqxDtJarBjVyKPYDVLKdnXKYt?usp=sharing)を作成しました**
   - こちらにアクセスして手順に従うことで環境構築無しにソースパッチを行うことができます
   - 内容は [NarouReaderMod.ipynb](./NarouReaderMod.ipynb) と同じものなので、こちらをColaboratoryにアップロードしても使えます
 
-# 注意
+
+## 注意
 - v0.2.1: 現在低負荷更新を行うと目次の章が正常に反映されなくなる不具合が報告されています
     - v0.2.2 で暫定的に対処しましたが要検証です
     - 破損した目次の章表示は強制更新で一時的に直ります
@@ -33,7 +34,7 @@
 SHA1: AD:45:B8:7B:B2:49:E6:EE:51:87:37:CD:23:BC:82:5F:8F:BC:C9:1B
 SHA256: FD:F3:16:B3:60:09:7A:63:C9:5E:7A:13:A9:36:B0:38:9E:47:5D:07:27:23:3A:F4:5D:93:90:59:31:49:B0:15
 ```
-## なろうリーダ1.35.6(APKPure)のファイルハッシュ
+### なろうリーダ1.35.6(APKPure)のファイルハッシュ
 ```
 MD5: 625ac2c139489a395b81cc2f84772bc8
 SHA1: e84d872c3c7f026543ff610d343d0a9353b02655
@@ -41,12 +42,12 @@ SHA256: 5fc140ef920c1ffc91b8ad5411b43e3fe80e647db045326ab98e7ec7af2fc635
 ```
 
 
-# バイナリパッチ
+## バイナリパッチ
 - ツールの用意や署名が面倒な場合はバイナリパッチを利用してください。
 - できればapktoolを使ってソースパッチを適用することを推奨します。
 - バイナリパッチはAPKPureのなろうリーダv1.35.6の単一apkにのみ適用可能です。
 
-## 必要なもの
+### 必要なもの
 - なろうリーダ v1.35.6 単一apk (APKPureから入手)
 - bsdiff/bspatch
   - **ブラウザ版を作りました**: https://kairi003.github.io/bsdiff-wasm/
@@ -57,13 +58,13 @@ SHA256: 5fc140ef920c1ffc91b8ad5411b43e3fe80e647db045326ab98e7ec7af2fc635
 - narou-mod.bsdiff
   - https://github.com/kairi003/NarouReaderMod/releases からダウンロード
 
-## 適用方法
-### ブラウザでの適用
+### 適用方法
+#### ブラウザでの適用
 1. https://kairi003.github.io/bsdiff-wasm/ にアクセス
 2. **bspatch** の **OldFile** になろうリーダのapkを、**PatchFile** に `narou-mod.bsdiff` を選択
 3. **run** ボタンを押す
 
-### コマンドでの適用
+#### コマンドでの適用
 1. なろうリーダのapkを`original.apk`という名前で`narou-mod.bsdiff`と同じディレクトリに配置
    - windowsの場合は`bspatch.exe`も同じディレクトリに配置
 2. コマンドラインやターミナルを開き以下のコマンドで`narou-mod.bsdiff`を適用
@@ -75,24 +76,24 @@ bspatch original.apk narou-mod.apk narou-mod.bsdiff
 keytool -printcert -jarfile narou-mod.apk
 ```
 
-# ソースパッチ
-## パッチ適用動作環境
+## ソースパッチ
+### パッチ適用動作環境
 - Linux(WSL含む)推奨, Mac未検証
 
-## 必要なツール
+### 必要なツール
 - JDK : https://adoptopenjdk.net/
 - keytool : JDKに含まれる
 - apksigner : Android SDKに含まれる
 - zipalign : Android SDKに含まれる
 - apktool (2.9.3) : https://apktool.org/docs/install/
-### Ubuntuでのインストール例
+#### Ubuntuでのインストール例
 ```bash
 sudo apt update
 sudo apt install openjdk-18-jdk-headless apksigner zipalign imagemagick
 sudo ./install-apktool.sh # apktoolのインストール
 ```
 
-## 使い方
+### 使い方
 署名やビルドが面倒な場合はバイナリパッチを利用してください。
 1. なろうリーダのapkを入手
    - デバイス中のapkはsplit apksになっているため、APKPureなどのサイトからダウンロード推奨
@@ -105,7 +106,7 @@ sudo ./install-apktool.sh # apktoolのインストール
 5. `narou-mod.apk` が生成されるので、これを端末にインストール
     - 自己署名のため、インストール時にセキュリティ警告が表示される
 
-## キーストアの作成
+### キーストアの作成
 以下のコマンドでキーストアを作成する。
 所在地などはデフォルト(Unkown)で問題ない。
 パスワードは署名時に必要。
@@ -113,7 +114,7 @@ sudo ./install-apktool.sh # apktoolのインストール
 keytool -genkeypair -v -keystore .keystore -alias narou-mod -keyalg RSA -keysize 2048 -validity 100000
 ```
 
-# パッチによる変更内容
+## パッチによる変更内容
 ### rename.sh
 - パッケージ名を変更 (`com.tscsoft.naroureader` -> `com.tscsoft.naroureader_mod`)
 - アプリ名を変更 (`なろうリーダ` -> `なろうリーダ[MOD]`)
